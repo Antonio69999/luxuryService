@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	{{ form_start(form) }}
+	<input type="hidden" name="_token" value="">
+
+	<div class="input-field">
+		{{ form_row(form.email) }}
+		<label for="email">Email</label>
+		<span class="help-block">Type your email address.</span>
+	</div>
+	<div class="input-field">
+		{{ form_row(form.password) }}
+		<label for="password">Password</label>
+		<i class="fa fa-eye show-password"></i>
+		<span class="help-block">Type your password.</span>
+	</div>
+	<div class="checkbox">
+		{{ form_row(form.checkbox) }}
+		<label for="{{ form.checkbox.vars.id }}">Keep me logged in</label>
+	</div>
+
+	<button type="submit" class="btn btn-lg gradient secondary btn-block waves-effect waves-light mt-20 mb-20">Login</button>
+	<div class="links">
+		<a href="#!">Forgot your password?</a>
+	</div>
+	{{ form_end(form) }}
+{% endblock %}
+
