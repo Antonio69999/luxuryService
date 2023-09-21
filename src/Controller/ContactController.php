@@ -6,13 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class JobOfferController extends AbstractController
+class ContactController extends AbstractController
 {
-    #[Route('/job_offer', name: 'app_job_offer')]
+    #[Route('/contact', name: 'app_contact')]
     public function index(): Response
     {
-        return $this->render('job_offer/jobs.html.twig', [
-            'controller_name' => 'JobOfferController',
+        return $this->render('contact/contact.html.twig', [
+            'controller_name' => 'ContactController',
         ]);
     }
 }
