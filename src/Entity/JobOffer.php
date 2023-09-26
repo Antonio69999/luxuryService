@@ -49,16 +49,21 @@ class JobOffer
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $created_at = null;
 
-    #[ORM\OneToMany(mappedBy: 'jobOffer', targetEntity: Client::class)]
-    private Collection $client;
-
     #[ORM\OneToMany(mappedBy: 'jobOffer', targetEntity: Candidature::class)]
     private Collection $candidatures;
 
+    #[ORM\ManyToOne(inversedBy: 'jobOffers')]
+    private ?Client $client = null;
+
     public function __construct()
     {
-        $this->client = new ArrayCollection();
-        $this->candidatures = new ArrayCollection();
+        // $this->client = new ArrayCollection();
+        $this->candidatures = new ArrayCollection(); 
+    }
+
+    public function __toString(): string
+   {
+        return $this->reference . '' . $this->job_title;
     }
 
     public function getId(): ?int
@@ -198,32 +203,14 @@ class JobOffer
         return $this;
     }
 
-    /**
-     * @return Collection<int, Client>
-     */
-    public function getClient(): Collection
+    public function getClient(): ?Client
     {
         return $this->client;
     }
 
-    public function addClient(Client $client): static
+    public function setClient(?Client $client): static
     {
-        if (!$this->client->contains($client)) {
-            $this->client->add($client);
-            $client->setJobOffer($this);
-        }
-
-        return $this;
-    }
-
-    public function removeClient(Client $client): static
-    {
-        if ($this->client->removeElement($client)) {
-            // set the owning side to null (unless already changed)
-            if ($client->getJobOffer() === $this) {
-                $client->setJobOffer(null);
-            }
-        }
+        $this->client = $client;
 
         return $this;
     }
