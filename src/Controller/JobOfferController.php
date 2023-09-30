@@ -15,10 +15,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class JobOfferController extends AbstractController
 {
     #[Route('/', name: 'app_job_offer', methods: ['GET'])]
-    public function index(JobOfferRepository $jobOfferRepository): Response
+    public function index(JobOffer $jobOffer, JobOfferRepository $jobOfferRepository): Response
     {
+        $jobOffers = $jobOfferRepository->findAll();
+
         return $this->render('job_offer/index.html.twig', [
-            'job_offers' => $jobOfferRepository->findAll(),
+            'job_offer' => $jobOffer,
+            'job_offers' => $jobOffers,
         ]);
     }
 
@@ -43,10 +46,11 @@ class JobOfferController extends AbstractController
     }
 
     #[Route('/show', name: 'app_job_offer_show', methods: ['GET'])]
-    public function show(JobOffer $jobOffer): Response
+    public function show(JobOffer $jobOffer, JobOfferRepository $jobOfferRepository): Response
     {
         return $this->render('job_offer/show.html.twig', [
             'job_offer' => $jobOffer,
+
         ]);
     }
 
