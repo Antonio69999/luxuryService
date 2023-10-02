@@ -42,7 +42,8 @@ class CandidatType extends AbstractType
             ->add('nationality')
             ->add('passport_file', FileType::class,  [
                 'data_class' => null,
-
+                'mapped' => false,
+                'required' => false,
                 'attr' => [
                     'id' => 'passport',
                     'size' => '20000000',
@@ -54,10 +55,11 @@ class CandidatType extends AbstractType
             ])
             ->add('cv', FileType::class, [
                 'data_class' => null,
-
+                'mapped' => false,
+                'required' => false,
                 'attr' => [
                 'id' => 'cv',
-                'size' => '20000000',
+                'size' => 20000000,
                 'accept' => '.pdf,.jpg,.doc,.docx,.png',
                 'name' => 'cv',
                 'type' => 'file',
@@ -66,7 +68,8 @@ class CandidatType extends AbstractType
             ])
             ->add('profil_picture', FileType::class, [
                 'data_class' => null,
-
+                'mapped' => false,
+                'required' => false,
                 'attr' => [
                     'id' => 'photo',
                     'size' => '20000000',

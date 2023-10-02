@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\JobOffer;
 use Doctrine\DBAL\Types\BooleanType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
@@ -32,7 +33,7 @@ class JobOfferCrudController extends AbstractCrudController
             DateField::new('closing_date'),
             IntegerField::new('salary'),
             DateField::new('created_at'),
-            IdField::new('client'),
+            AssociationField::new('client'),
         ];
     }
     

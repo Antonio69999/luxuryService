@@ -52,6 +52,7 @@ class JobOfferController extends AbstractController
         // dd($jobOffer);
         return $this->render('job_offer/show.html.twig', [
             'jobOffer' => $jobOffer,
+            'joboffers' => $jobOfferRepository->findAll(),
         ]);
     }
 
