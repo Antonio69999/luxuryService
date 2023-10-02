@@ -1,0 +1,6 @@
+Symfony Doc => testing
+
+WebTestCase souvent utilisé pour les test fonctionnels (ex: recuperer contenue du DOM)
+
+php bin/console d:d:c --env=test
+php bin/console d:m:m --env=test
