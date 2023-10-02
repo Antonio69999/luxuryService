@@ -4,3 +4,5 @@ WebTestCase souvent utilisé pour les test fonctionnels (ex: recuperer contenue 
 
 php bin/console d:d:c --env=test
 php bin/console d:m:m --env=test
+
+php bin/console make:test
