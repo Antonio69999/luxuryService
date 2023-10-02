@@ -45,12 +45,13 @@ class JobOfferController extends AbstractController
         ]);
     }
 
-    #[Route('/show', name: 'app_job_offer_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_job_offer_show', methods: ['GET'])]
     public function show(JobOffer $jobOffer, JobOfferRepository $jobOfferRepository): Response
     {
-        return $this->render('job_offer/show.html.twig', [
-            'job_offer' => $jobOffer,
 
+        // dd($jobOffer);
+        return $this->render('job_offer/show.html.twig', [
+            'jobOffer' => $jobOffer,
         ]);
     }
 

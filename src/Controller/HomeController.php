@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(Candidat $candidat, JobOfferRepository $jobOfferRepository): Response
+    public function index(Candidat $candidat, JobOfferRepository $jobOfferRepository, JobOffer $jobOffer): Response
     {
 
         return $this->render('home/index.html.twig', [
