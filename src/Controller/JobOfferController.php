@@ -2,8 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity;
+use App\Entity\Candidature;
+use App\Entity\Candidat;
 use App\Entity\JobOffer;
 use App\Form\JobOfferType;
+use App\Form\CandidatureType;
+use App\Repository\CandidatureRepository;
 use App\Repository\JobOfferRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -48,8 +53,6 @@ class JobOfferController extends AbstractController
     #[Route('/show/{id}', name: 'app_job_offer_show', methods: ['GET'])]
     public function show(JobOffer $jobOffer, JobOfferRepository $jobOfferRepository): Response
     {
-
-        // dd($jobOffer);
         return $this->render('job_offer/show.html.twig', [
             'jobOffer' => $jobOffer,
             'joboffers' => $jobOfferRepository->findAll(),
