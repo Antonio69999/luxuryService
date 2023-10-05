@@ -6,6 +6,7 @@ use App\Entity;
 use App\Entity\Candidature;
 use App\Entity\Candidat;
 use App\Entity\JobOffer;
+use App\Entity\User;
 use App\Form\JobOfferType;
 use App\Form\CandidatureType;
 use App\Repository\CandidatureRepository;
@@ -50,9 +51,15 @@ class JobOfferController extends AbstractController
         ]);
     }
 
-    #[Route('/show/{id}', name: 'app_job_offer_show', methods: ['GET'])]
-    public function show(JobOffer $jobOffer, JobOfferRepository $jobOfferRepository, Candidature $candidature): Response
+    #[Route('/show/{id}', name: 'app_job_offer_show', methods: ['GET'], defaults: ['id' => null])]
+    public function show(JobOffer $jobOffer, JobOfferRepository $jobOfferRepository, CandidatureRepository $candidatureRepository, User $user): Response
     {
+        $candidat = $user;
+        $candidature = $candidatureRepository->findOneBy([
+            'user' => $user,
+            'jobOffer' => $jobOffer
+            ]);
+    
         return $this->render('job_offer/show.html.twig', [
             'jobOffer' => $jobOffer,
             'joboffers' => $jobOfferRepository->findAll(),

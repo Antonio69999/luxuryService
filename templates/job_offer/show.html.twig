@@ -83,16 +83,14 @@
 										</span>2018-05-18</li>
 								</ul>
 								{% if is_granted('ROLE_USER') %}
-									<a class="btn btn-block gradient primary mt-30 waves-effect waves-light" href="{{path ('app_candidature_new', {'id': jobOffer.id})}}">Apply for this job</a>
+									{% if candidature %}
+										<div class="btn btn-block btn-success mt-30 waves-effect waves-light disabled">You have applied for this job</div>
+									{% else %}
+										<a class="btn btn-block gradient primary mt-30 waves-effect waves-light" href="{{ path('app_candidature_new', {'id': jobOffer.id}) }}">Apply for this job</a>
+									{% endif %}
 								{% else %}
-									<a class="btn btn-block gradient primary mt-30 waves-effect waves-light" href="{{path ('app_login')}}">You have to be log</a>
+									<a class="btn btn-block gradient primary mt-30 waves-effect waves-light" href="{{ path('app_login') }}">You have to be logged in</a>
 								{% endif %}
-
-								{% if candidature.getUser() >= '1' %}
-									<div class="btn btn-block btn-success mt-30 waves-effect waves-light disabled">You have applied for this job</div>
-								{% else %}
-									<div class="btn btn-block btn-warning mt-30 waves-effect waves-light disabled">You did not applied for this job yet</div>
-								{% endif %} 
 
 							</div>
 						</div>
