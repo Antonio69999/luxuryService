@@ -88,11 +88,11 @@
 									<a class="btn btn-block gradient primary mt-30 waves-effect waves-light" href="{{path ('app_login')}}">You have to be log</a>
 								{% endif %}
 
-								{# {% if candidature.getUser() %}
+								{% if candidature.getUser() >= '1' %}
 									<div class="btn btn-block btn-success mt-30 waves-effect waves-light disabled">You have applied for this job</div>
 								{% else %}
 									<div class="btn btn-block btn-warning mt-30 waves-effect waves-light disabled">You did not applied for this job yet</div>
-								{% endif %} #}
+								{% endif %} 
 
 							</div>
 						</div>

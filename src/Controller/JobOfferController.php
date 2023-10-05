@@ -51,11 +51,12 @@ class JobOfferController extends AbstractController
     }
 
     #[Route('/show/{id}', name: 'app_job_offer_show', methods: ['GET'])]
-    public function show(JobOffer $jobOffer, JobOfferRepository $jobOfferRepository): Response
+    public function show(JobOffer $jobOffer, JobOfferRepository $jobOfferRepository, Candidature $candidature): Response
     {
         return $this->render('job_offer/show.html.twig', [
             'jobOffer' => $jobOffer,
             'joboffers' => $jobOfferRepository->findAll(),
+            'candidature' => $candidature,
         ]);
     }
 

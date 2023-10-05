@@ -133,9 +133,6 @@ $(handler);
 							<ul class="menuzord-menu pull-right light" role="navigation">
 								{% if is_granted('ROLE_USER') %}
 									<li class="dropdown">
-										<a target="_self" href="{{ path('app_candidat_profile')}}" class="btn btn-lg gradient secondary btn-block waves-effect waves-light btn-register"></a>
-									</li>
-									<li class="dropdown">
 										<a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
 									</li>
 									<li class="dropdown">
