@@ -48,6 +48,11 @@ class Client
         $this->jobOffers = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getCompanyName();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

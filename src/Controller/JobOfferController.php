@@ -51,10 +51,15 @@ class JobOfferController extends AbstractController
         ]);
     }
 
-    #[Route('/show/{id}', name: 'app_job_offer_show', methods: ['GET'], defaults: ['id' => null])]
+    #[Route('/show/{id}', name: 'app_job_offer_show', methods: ['GET'])] //defaults: ['id' => null])]
     public function show(JobOffer $jobOffer, JobOfferRepository $jobOfferRepository, CandidatureRepository $candidatureRepository, User $user): Response
     {
-        $candidat = $user;
+        /**
+         * @var User $user
+         */
+
+        $user = $this->getUser();
+        $candidat = $user->getCandidat();
         $candidature = $candidatureRepository->findOneBy([
             'user' => $user,
             'jobOffer' => $jobOffer

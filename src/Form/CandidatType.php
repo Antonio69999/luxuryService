@@ -90,13 +90,12 @@ class CandidatType extends AbstractType
             ])
             ->add('experience', ChoiceType::class, [
                 'choices' => [
-                    '3m' => '0 - 6 month',
-                    '6m' => '6 months - 1 year',
-                    '1y' => '1 - 2 years',
-                    '2y' => '2+ years',
-                    '5y' => '5+ years',
-                    '10y' => '10 years',
-
+                    '0 - 6 month' => '3m',
+                    '6 months - 1 year' => '6m',
+                    '1 - 2 years' => '1y',
+                    '2+ years' => '2y',
+                    '5+ years' => '5y',
+                    '10 years' => '10y'
                 ],
             ])
             ->add('description', TextareaType::class, [
