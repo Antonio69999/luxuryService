@@ -410,4 +410,5 @@ class Candidat
 
         return $this;
     }
+
 }

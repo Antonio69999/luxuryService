@@ -1,1 +1,59 @@
 {% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block title %}
+
+	<div class="row">
+		<div class="col-md-6">
+			<h1 class="m-0">Dashboard<h1></div>
+			</div>
+		{% endblock %}
+
+		{% block main %}
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card bg-dark">
+            <div class="card-header">
+                <h2>Candidat Count</h2>
+            </div>
+            <div class="card-body">
+                <p>Total Candidats: {{ candidatCount }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card bg-dark">
+            <div class="card-header">
+                <h2>Client Count</h2>
+            </div>
+            <div class="card-body">
+                <p>Total Clients: {{ clientCount }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card bg-dark">
+            <div class="card-header">
+                <h2>JobOffer Count</h2>
+            </div>
+            <div class="card-body">
+                <p>Total JobOffers: {{ countJobOffers }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card bg-dark">
+            <div class="card-header">
+                <h2>Candidature Count</h2>
+            </div>
+            <div class="card-body">
+                <p>Total Candidatures: {{ countCandidatures }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+						{% endblock %}
+

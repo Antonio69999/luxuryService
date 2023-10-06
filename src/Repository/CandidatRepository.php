@@ -20,6 +20,14 @@ class CandidatRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Candidat::class);
     }
+    
+    public function countCandidat()
+    {
+        return $this->createQueryBuilder('c')
+            ->select('COUNT(c.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 
 //    /**
 //     * @return Candidat[] Returns an array of Candidat objects

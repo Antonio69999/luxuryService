@@ -2,9 +2,13 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Product;
 use App\Entity\JobOffer;
 use App\Entity\Client;
+use App\Entity\Candidat;
+use App\Repository\CandidatRepository;
+use App\Repository\CandidatureRepository;
+use App\Repository\ClientRepository;
+use App\Repository\JobOfferRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -13,31 +17,42 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
+
+    private $candidatRepository;
+
+    public function __construct(CandidatRepository $candidatRepository, ClientRepository $clientRepository, JobOfferRepository $JobOfferRepository, CandidatureRepository $CandidatureRepository)
+    {
+        $this->candidatRepository = $candidatRepository;
+        $this->clientRepository = $clientRepository;
+        $this->JobOfferRepository = $JobOfferRepository;
+        $this->CandidatureRepository = $CandidatureRepository;
+
+    }
+
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
 
-        // Option 1. You can make your dashboard redirect to some common page of your backend
-        //
-        // $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        // return $this->redirect($adminUrlGenerator->setController(OneOfYourCrudController::class)->generateUrl());
+        $candidatCount = $this->candidatRepository->countCandidat();
+        $clientCount = $this->clientRepository->countClients();
+        $countJobOffers = $this->JobOfferRepository->countJobOffers();
+        $countCandidatures = $this->CandidatureRepository->countCandidatures();
 
-        // Option 2. You can make your dashboard redirect to different pages depending on the user
-        //
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirect('...');
-        // }
-
-        // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
-        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
-        //
-        return $this->render('admin/dashboard.html.twig');
+        // dd($candidatCount);
+        return $this->render('admin/dashboard.html.twig', [
+            'candidatCount' => $candidatCount,
+            'clientCount' => $clientCount,
+            'countJobOffers' => $countJobOffers,
+            'countCandidatures' => $countCandidatures
+        ]);
     }
 
     public function configureDashboard(): Dashboard
     {
+
         return Dashboard::new()
-            ->setTitle('LuxuryService');
+            ->setTitle('LuxuryService')
+            ->setTranslationDomain('admin');
     }
 
     public function configureMenuItems(): iterable
@@ -45,5 +60,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('JobOffer', 'fa-solid fa-briefcase', JobOffer::class);
         yield MenuItem::linkToCrud('Client', 'fa-solid fa-handshake', Client::class);
+        yield MenuItem::linkToCrud('Candidat', 'fa-solid fa-pen-nib', Candidat::class);
     }
 }
