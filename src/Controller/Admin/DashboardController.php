@@ -12,6 +12,7 @@ use App\Repository\JobOfferRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -19,6 +20,7 @@ class DashboardController extends AbstractDashboardController
 {
 
     private $candidatRepository;
+    private $user;
 
     public function __construct(CandidatRepository $candidatRepository, ClientRepository $clientRepository, JobOfferRepository $JobOfferRepository, CandidatureRepository $CandidatureRepository)
     {

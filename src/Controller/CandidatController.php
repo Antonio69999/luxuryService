@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 // use App\Entity\Candidat;
+
+use App\Entity\Candidat;
 use App\Form\CandidatType;
 use App\Repository\CandidatRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -11,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Uid\Uuid;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 #[Route('/candidat')]
 class CandidatController extends AbstractController
@@ -92,14 +95,15 @@ class CandidatController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_candidat_delete', methods: ['POST'])]
-    public function delete(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/{id}', name: 'app_candidat_delete', methods: ['POST', 'GET'])]
+
+    public function delete(Request $request, EntityManagerInterface $entityManager, Candidat $candidat): Response
     {
         if ($this->isCsrfTokenValid('delete'.$candidat->getId(), $request->request->get('_token'))) {
             $entityManager->remove($candidat);
             $entityManager->flush();
         }
-
+    
         return $this->redirectToRoute('app_candidat_profile', [], Response::HTTP_SEE_OTHER);
     }
 }
