@@ -1,0 +1,17 @@
+{% extends 'base.html.twig'%}
+
+
+{% block body %}
+<br><br><br><br>
+    <div class="container">
+
+    <h1 class="section-title primary-text">Hold up ! You cannot go in there yet...</h1>
+
+    <p class="section-sub"> 
+        You have to be log in first, please head up to the 
+        <a href="{{ path('app_login') }}">login page</a>
+    </p>
+
+    </div>
+    <br><br>
+{% endblock %}
